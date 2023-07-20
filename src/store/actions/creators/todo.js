@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO,DEL_TODO } from "../types/todo";
+import { ADD_TODO, TOGGLE_TODO, DEL_TODO } from "../types/todo";
 
 let nextTodoId = 0;
 
