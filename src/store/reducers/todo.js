@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO, DEL_TODO } from "../actions/types/todo";
+import { ADD_TODO, TOGGLE_TODO, DEL_TODO } from '../actions/types/todo';
 
 const initialState = {
 	allIds: [],
@@ -44,19 +44,19 @@ export default function todoReducer(state = initialState, action) {
 			};
 		}
 
-    case DEL_TODO: {
-      const { id } = action.payload;
+		case DEL_TODO: {
+			const { id } = action.payload;
 
-      delete { ...state.byIds[id] };
+			delete { ...state.byIds[id] };
 
-      return {
-        ...state,
-        allIds: state.allIds.filter((item) => item !== id),
-        byIds: {
-          ...state.byIds,
-        },
-      };
-    }
+			return {
+				...state,
+				allIds: state.allIds.filter((item) => item !== id),
+				byIds: {
+					...state.byIds,
+				},
+			};
+		}
 
 		default:
 			return state;

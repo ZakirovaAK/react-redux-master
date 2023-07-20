@@ -4,19 +4,19 @@ import cx from "classnames";
 
 import { toggleTodo, delTodo } from "../../store/actions/creators/todo";
 
-import styles from './index.module.css';
+import styles from "./index.module.css";
 
 export const Todo = ({ todo }) => {
   const dispatch = useDispatch();
 
   const toggleTodoItem = () => {
     dispatch(toggleTodo(todo.id));
-  };
+  }
 
   const deleteTodo = (id) => {
-    console.log('id = ' + todo.id);
+    //console.log('id = ' + todo.id);
     dispatch(delTodo(todo.id));
-  };
+  }
 
   return (
     <div className={styles.item_all}>
@@ -31,7 +31,7 @@ export const Todo = ({ todo }) => {
         </span>{" "}
       </li>{" "}
       <button className={styles.del} onClick={deleteTodo}>
-        Удалить
+        Delete
       </button>
     </div>
   );

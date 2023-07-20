@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/actions/creators/todo";
 
 export const AddTodo = () => {
-  const [value, setValue] = useState("");
   const dispatch = useDispatch();
+  const [value, setValue] = useState("");
 
   const onInputChange = (evt) => {
     setValue(evt.target.value);
