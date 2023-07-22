@@ -38,7 +38,7 @@ export default function todoReducer(state = initialState, action) {
 					...state.byIds,
 					[id]: {
 						...targetTodo,
-						completed: !targetTodo.completed,
+						complete: !targetTodo.complete,
 					},
 				},
 			};
