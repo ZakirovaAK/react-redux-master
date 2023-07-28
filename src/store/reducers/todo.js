@@ -1,51 +1,64 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actions/types/todo";
+import { ADD_TODO, TOGGLE_TODO, DEL_TODO } from '../actions/types/todo';
 
 const initialState = {
-  allIds: [],
-  byIds: {},
+	allIds: [],
+	byIds: {},
 };
 
 export default function todoReducer(state = initialState, action) {
-  switch (action.type) {
-    case ADD_TODO: {
-      const { id, content } = action.payload;
+	switch (action.type) {
+		case ADD_TODO: {
+			const { id, content } = action.payload;
 
-      return {
-        ...state,
+			return {
+				...state,
 
-        allIds: [...state.allIds, id],
-        
-        byIds: {
-          ...state.byIds,
+				allIds: [...state.allIds, id],
 
-          [id]: {
-            content,
-            complete: false,
-          },
-        },
-      };
-    }
+				byIds: {
+					...state.byIds,
 
-    case TOGGLE_TODO: {
-      const {id} = action.payload;
+					[id]: {
+						content,
+						complete: false,
+					},
+				},
+			};
+		}
 
-      const targetTodo = state.byIds[id];
+		case TOGGLE_TODO: {
+			const { id } = action.payload;
 
-      return {
-        ...state,
+			const targetTodo = state.byIds[id];
 
-        byIds: {
-          ...state.byIds,
-          [id]: {
-            ...targetTodo,
-            completed: !targetTodo.completed,
-          },
-        },
-      };
+			return {
+				...state,
 
-    }
+				byIds: {
+					...state.byIds,
+					[id]: {
+						...targetTodo,
+						complete: !targetTodo.complete,
+					},
+				},
+			};
+		}
 
-    default:
-      return state;
-  }
+		case DEL_TODO: {
+			const { id } = action.payload;
+
+			delete { ...state.byIds[id] };
+
+			return {
+				...state,
+				allIds: state.allIds.filter((item) => item !== id),
+				byIds: {
+					...state.byIds,
+				},
+			};
+		}
+
+		default:
+			return state;
+	}
 }
